@@ -139,10 +139,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bible.h" />
     <ClInclude Include="Map.hpp" />
+    <ClInclude Include="Verse.h" />
+    <ClInclude Include="VerseKey.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="Bible.cpp" />
+    <ClCompile Include="biblesearcher.cpp" />
+    <ClCompile Include="Verse.cpp" />
+    <ClCompile Include="VerseKey.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="bible.txt" />
+    <Text Include="bibleTest.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

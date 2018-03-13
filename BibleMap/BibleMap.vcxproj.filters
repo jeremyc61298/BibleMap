@@ -18,10 +18,36 @@
     <ClInclude Include="Map.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="VerseKey.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Verse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bible.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="test.cpp">
+    <ClCompile Include="VerseKey.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Verse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bible.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="biblesearcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="bible.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="bibleTest.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
