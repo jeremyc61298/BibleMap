@@ -31,11 +31,13 @@ namespace util
 		Wrapper operator[](const KeyType& key);
 		unsigned size();
 
-	private:
+	private: 
 		std::vector<KeyType> keys;
 		std::vector<ValueType> values;
 
 		ValueType* find(const KeyType &key);
+
+	protected:
 		ValueType* set(const KeyType &key, const ValueType &value);
 	};
 

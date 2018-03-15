@@ -1,6 +1,6 @@
 #include "Verse.h"
-
-
+using std::cout;
+using std::endl;
 
 Verse::Verse()
 {
@@ -15,4 +15,10 @@ Verse::Verse(VerseKey verseKey, string verseText) :
 
 Verse::~Verse()
 {
+}
+
+void Verse::printVerse()
+{
+	cout << verseKey.book << " " << verseKey.chapter << ":" << verseKey.verseNumber << " - ";
+	cout << verseText << endl << endl;
 }

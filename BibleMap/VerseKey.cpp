@@ -1,7 +1,5 @@
 #include "VerseKey.h"
 
-
-
 VerseKey::VerseKey()
 {
 	// Include default initialization?
@@ -27,11 +25,16 @@ bool VerseKey::operator==(const VerseKey & rValue) const
 
 istream & operator>>(istream & in, VerseKey & rValue)
 {
-	string book;
-	int chapter;
-	int verseNumber;
-	in >> book >> chapter >> verseNumber;
-	VerseKey vK(book, chapter, verseNumber);
-	rValue = vK;
+	string book, temp;
+	int chapter = -1;
+	int verseNumber = -1;
+	in >> book;
+	if (book != "Quit")
+	{
+		getline(in, temp, ':');
+		chapter = stoi(temp);
+		in >> verseNumber;
+	}
+	rValue = VerseKey(book, chapter, verseNumber);
 	return in;
 }

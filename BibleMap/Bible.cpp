@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include "Verse.h"
+#include "VerseKey.h"
 
 using std::ifstream;
 using std::cout;
@@ -11,20 +13,34 @@ using std::stringstream;
 Bible::Bible()
 {
 	// Read in from the bible text file into key value pairs
-	ifstream bibleText("bibleTest.txt");
+	ifstream bibleText("bible.txt");
 	if (!bibleText.is_open())
 	{
 		cout << "The bible text file could not be opened. " << endl;
 	}
 	else
 	{
-		while (!bibleText.eof()) 
+		string line = "";
+		string junk = "";
+		// Change to verseKey struct
+		VerseKey extractedVK;
+		string verse = "";
+		while (!bibleText.eof() && !bibleText.fail()) 
 		{
 			stringstream ss;
-			string line;
 			getline(bibleText, line);
 			ss << line;
-			// Next, read the stringstream into the actual map. 
+			if (line.substr(0, 4) == "Book")
+			{
+				ss >> junk >> junk >> extractedVK.book;
+			}
+			else
+			{
+				ss >> extractedVK.chapter >> extractedVK.verseNumber;
+				getline(ss, verse);
+				set(extractedVK, Verse(extractedVK, verse));
+			} 
+
 		}
 	}
 }
