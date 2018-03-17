@@ -1,3 +1,5 @@
+/* Bible.h */
+// Author: Jeremy Campbell
 #include "Map.hpp"
 #include "VerseKey.h"
 #include "Verse.h"

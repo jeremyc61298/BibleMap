@@ -1,3 +1,5 @@
+/* VerseKey.h */
+// Author: Jeremy Campbell
 #include<string>
 #include<iostream>
 #pragma once
@@ -19,3 +21,4 @@ struct VerseKey
 };
 
 istream& operator>>(istream& in, VerseKey& rValue);
+string toUpperStr(string s);

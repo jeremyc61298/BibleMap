@@ -1,10 +1,12 @@
+/* Verse.cpp */
+// Author: Jeremy Campbell
 #include "Verse.h"
 using std::cout;
 using std::endl;
 
 Verse::Verse()
 {
-	// Include default initialization?
+
 }
 
 Verse::Verse(VerseKey verseKey, string verseText) :

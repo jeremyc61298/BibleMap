@@ -1,3 +1,5 @@
+/* Verse.h */
+// Author: Jeremy Campbell
 #include "VerseKey.h"
 #include <iostream>
 #pragma once

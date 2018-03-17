@@ -1,3 +1,6 @@
+/* biblesearcher.cpp */
+// Author: Jeremy Campbell
+
 #include "Bible.h"
 #include "VerseKey.h"
 #include <iostream>
@@ -17,7 +20,7 @@ void main()
 	cout << "What verse would you like? ";
 	cin >> requestedVK;
 
-	while(requestedVK.book != "Quit")
+	while(toUpperStr(requestedVK.book) != "QUIT")
 	{
 		try
 		{
@@ -26,7 +29,7 @@ void main()
 		}
 		catch (exception e)
 		{
-			cerr << "Verse not found." << endl;
+			cerr << "Verse not found." << endl << endl;
 		}
 
 		cout << "What verse would you like? ";

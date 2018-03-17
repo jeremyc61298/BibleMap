@@ -1,8 +1,10 @@
+/* verseKey.cpp */
+// Author: Jeremy Campbell
 #include "VerseKey.h"
 
 VerseKey::VerseKey()
 {
-	// Include default initialization?
+
 }
 
 VerseKey::VerseKey(string book, int chapter, int verseNumber) :
@@ -29,12 +31,26 @@ istream & operator>>(istream & in, VerseKey & rValue)
 	int chapter = -1;
 	int verseNumber = -1;
 	in >> book;
-	if (book != "Quit")
+	if (toUpperStr(book) != "QUIT")
 	{
+		if (book == "1" || book == "2" || book == "3")
+		{
+			in >> temp;
+			book.append(" " + temp);
+		}
 		getline(in, temp, ':');
 		chapter = stoi(temp);
 		in >> verseNumber;
 	}
 	rValue = VerseKey(book, chapter, verseNumber);
 	return in;
+}
+
+string toUpperStr(string s)
+{
+	for (auto i = s.begin(); i != s.end(); i++)
+	{
+		*i = toupper(*i);
+	}
+	return s;
 }
