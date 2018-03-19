@@ -17,7 +17,7 @@ using std::stringstream;
 Bible::Bible()
 {
 	// Read in from the bible text file into key value pairs
-	ifstream bibleText("bibleTest.txt");
+	ifstream bibleText("bible.txt");
 	if (!bibleText.is_open())
 	{
 		cout << "The bible text file could not be opened. " << endl;
@@ -43,9 +43,9 @@ Bible::Bible()
 				getline(ss, verse);
 				set(extractedVK, Verse(extractedVK, verse));
 			} 
-
 		}
 	}
+	bibleText.close();
 }
 
 

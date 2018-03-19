@@ -27,7 +27,9 @@ bool VerseKey::operator==(const VerseKey & rValue) const
 
 istream & operator>>(istream & in, VerseKey & rValue)
 {
-	string book, temp;
+	string book;
+	string temp;
+	string temp2;
 	int chapter = -1;
 	int verseNumber = -1;
 	in >> book;
@@ -37,6 +39,11 @@ istream & operator>>(istream & in, VerseKey & rValue)
 		{
 			in >> temp;
 			book.append(" " + temp);
+		}
+		if (book == "Song")
+		{
+			in >> temp >> temp2;
+			book.append(" " + temp + " " + temp2);
 		}
 		getline(in, temp, ':');
 		chapter = stoi(temp);

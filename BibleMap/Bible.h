@@ -9,6 +9,6 @@ class Bible : public util::Map<VerseKey, Verse>
 {
 public:
 	Bible();
-	~Bible();
+	virtual ~Bible();
 };
 

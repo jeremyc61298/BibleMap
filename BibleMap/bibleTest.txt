@@ -17,3 +17,9 @@ Book 60	1 Peter
 001 007 That the trial of your faith, being much more precious than of gold that perisheth, though it be tried with fire, might be found unto praise and honour and glory at the appearing of Jesus Christ:
 001 008 Whom having not seen, ye love; in whom, though now ye see him not, yet believing, ye rejoice with joy unspeakable and full of glory:
 001 009 Receiving the end of your faith, even the salvation of your souls.
+Book 22	Song of Solomon
+001 001 The song of songs, which is Solomon's.
+001 002 Let him kiss me with the kisses of his mouth: for thy love is better than wine.
+001 003 Because of the savour of thy good ointments thy name is as ointment poured forth, therefore do the virgins love thee.
+001 004 Draw me, we will run after thee: the king hath brought me into his chambers: we will be glad and rejoice in thee, we will remember thy love more than wine: the upright love thee.
+001 005 I am black, but comely, O ye daughters of Jerusalem, as the tents of Kedar, as the curtains of Solomon.

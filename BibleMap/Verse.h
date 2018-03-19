@@ -9,7 +9,7 @@ class Verse
 public:
 	Verse();
 	Verse(VerseKey verseKey, string verseText);
-	~Verse();
+	virtual ~Verse();
 
 	void printVerse();
 

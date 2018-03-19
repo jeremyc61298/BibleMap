@@ -11,7 +11,7 @@ struct VerseKey
 {
 	VerseKey();
 	VerseKey(string book, int chapter, int verseNumber);
-	~VerseKey();
+	virtual ~VerseKey();
 
 	bool operator==(const VerseKey& rValue) const;
 
