@@ -13,27 +13,33 @@ using std::exception;
 
 void main()
 {
-	Bible bible;
-	VerseKey requestedVK;
-	Verse requestedVerse;
-
-	cout << "What verse would you like? ";
-	cin >> requestedVK;
-
-	while(toUpperStr(requestedVK.book) != "QUIT")
+	Bible& bible = Bible::getInstance();
+	if (bible.failedToOpen())
 	{
-		try
-		{
-			requestedVerse = bible[requestedVK];
-			requestedVerse.printVerse();
-		}
-		catch (exception e)
-		{
-			cerr << "Verse not found." << endl << endl;
-		}
+		cout << "The Bible text file could not be opened. " << endl;
+	}
+	else
+	{
+		VerseKey requestedVK;
+		Verse requestedVerse;
 
 		cout << "What verse would you like? ";
 		cin >> requestedVK;
-	} 
 
+		while (toUpperStr(requestedVK.book) != "QUIT")
+		{
+			try
+			{
+				requestedVerse = bible[requestedVK];
+				requestedVerse.printVerse();
+			}
+			catch (exception e)
+			{
+				cerr << "Verse not found." << endl << endl;
+			}
+
+			cout << "What verse would you like? ";
+			cin >> requestedVK;
+		}
+	}
 }

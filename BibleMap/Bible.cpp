@@ -3,24 +3,27 @@
 
 #include "Bible.h"
 #include <fstream>
+#include <exception>
 #include <iostream>
 #include <sstream>
 #include "Verse.h"
 #include "VerseKey.h"
 
 using std::ifstream;
+using std::exception;
 using std::cout;
 using std::endl;
 using std::stringstream;
 
+Bible* Bible::bible = NULL;
 
-Bible::Bible()
+Bible::Bible() : failed(false)
 {
 	// Read in from the bible text file into key value pairs
 	ifstream bibleText("bible.txt");
 	if (!bibleText.is_open())
 	{
-		cout << "The bible text file could not be opened. " << endl;
+		failed = true;
 	}
 	else
 	{
@@ -51,4 +54,18 @@ Bible::Bible()
 
 Bible::~Bible()
 {
+}
+
+Bible& Bible::getInstance()
+{
+	if (bible == NULL)
+	{
+		bible = new Bible();
+	}
+	return *bible;
+}
+
+bool Bible::failedToOpen()
+{
+	return failed;
 }

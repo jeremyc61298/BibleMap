@@ -8,7 +8,15 @@
 class Bible : public util::Map<VerseKey, Verse>
 {
 public:
-	Bible();
 	virtual ~Bible();
+	static Bible& getInstance();
+	bool failedToOpen();
+
+private:
+	Bible();
+	Bible(Bible&) = delete;
+	void operator=(Bible& junk) = delete;
+	static Bible* bible;
+	bool failed;
 };
 
