@@ -31,6 +31,27 @@ namespace util
 		Wrapper operator[](const KeyType& key);
 		unsigned size();
 
+		class Iterator
+		{
+		public:
+			virtual ~Iterator();
+			Iterator operator++(int junk);
+			Iterator operator++();
+			Iterator operator--(int junk);
+			Iterator operator--();
+			ValueType& operator*();
+
+		private:
+			Iterator(Map& map);
+
+			Map& map;
+			KeyType index;
+
+			//friend class Map;
+		};
+
+		Iterator getIterator(KeyType start) const;
+
 	private: 
 		std::vector<KeyType> keys;
 		std::vector<ValueType> values;
@@ -90,6 +111,18 @@ namespace util
 		return result;
 	}
 
+	template<typename KeyType, typename ValueType>
+	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::getIterator(KeyType start) const
+	{
+		if (find(start) == NULL)
+		{
+			throw std::range_error("Key not found in map.");
+		}
+		Iterator i(*this);
+		i.index = start;
+		return i;
+	}
+
 	/*==========================================================================
 	* Wrapper methods
 	*/
@@ -101,7 +134,7 @@ namespace util
 		value = map.find(key);
 	}
 
-	//Copy construxtor
+	//Copy constructor
 	template <typename KeyType, typename ValueType>
 	Map<KeyType, ValueType>::Wrapper::Wrapper(const Wrapper& rValue) :
 		map(rValue.map), key(rValue.key), value(rValue.value)
@@ -139,4 +172,51 @@ namespace util
 		map.set(key, rValue);
 		return rValue;
 	}
+
+	/*==========================================================================
+	* Iterator Methods
+	*/
+
+	template <typename KeyType, typename ValueType>
+	Map<KeyType, ValueType>::Iterator::Iterator(Map& map)
+		: map(map)
+	{}
+
+	template <typename KeyType, typename ValueType>
+	Map<KeyType, ValueType>::Iterator::~Iterator()
+	{}
+
+	template<typename KeyType, typename ValueType>
+	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::Iterator::operator++(int junk)
+	{
+		return Iterator();
+	}
+
+	template<typename KeyType, typename ValueType>
+	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::Iterator::operator++()
+	{
+		return Iterator();
+	}
+
+	template<typename KeyType, typename ValueType>
+	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::Iterator::operator--(int junk)
+	{
+		return Iterator();
+	}
+
+	template<typename KeyType, typename ValueType>
+	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::Iterator::operator--()
+	{
+		return Iterator();
+	}
+
+	template<typename KeyType, typename ValueType>
+	ValueType& Map<KeyType, ValueType>::Iterator::operator*()
+	{
+		return &map[index];
+	}
+
 }
+
+
+
