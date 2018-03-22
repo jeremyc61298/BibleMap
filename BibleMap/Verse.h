@@ -11,7 +11,7 @@ public:
 	Verse(VerseKey verseKey, string verseText);
 	virtual ~Verse();
 
-	void printVerse();
+	void printVerse() const;
 
 private:
 

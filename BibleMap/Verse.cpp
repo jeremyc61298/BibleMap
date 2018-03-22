@@ -19,8 +19,8 @@ Verse::~Verse()
 {
 }
 
-void Verse::printVerse()
+void Verse::printVerse() const
 {
 	cout << verseKey.book << " " << verseKey.chapter << ":" << verseKey.verseNumber << " - ";
-	cout << verseText << endl << endl;
+	cout << verseText << endl;
 }

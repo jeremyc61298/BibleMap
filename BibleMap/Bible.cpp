@@ -69,3 +69,9 @@ bool Bible::failedToOpen()
 {
 	return failed;
 }
+
+ostream& operator<<(ostream& out, const Verse verseI) 
+{
+	verseI.printVerse();
+	return out;
+}

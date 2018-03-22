@@ -35,28 +35,42 @@ namespace util
 		{
 		public:
 			virtual ~Iterator();
-			Iterator operator++(int junk);
-			Iterator operator++();
-			Iterator operator--(int junk);
-			Iterator operator--();
+			void operator++(int junk);
+			void operator++();
+			void operator--(int junk);
+			void operator--();
 			ValueType& operator*();
 
 		private:
-			Iterator(Map& map);
+			Iterator(Map& map, int index);
 
 			Map& map;
-			KeyType index;
+			int index;
 
-			//friend class Map;
+			friend class Map;
 		};
 
-		Iterator getIterator(KeyType start) const;
+		Iterator getIterator(const KeyType start);
 
+		class IVisitor
+		{
+		public:
+			IVisitor();
+			virtual ~IVisitor();
+
+			virtual void visit(const KeyType key, const ValueType value) = 0;
+
+		private:
+
+		};
+
+		void visit(IVisitor visitor);
 	private: 
 		std::vector<KeyType> keys;
 		std::vector<ValueType> values;
 
 		ValueType* find(const KeyType &key);
+		int findIndex(const KeyType &key);
 
 	protected:
 		ValueType* set(const KeyType &key, const ValueType &value);
@@ -95,6 +109,21 @@ namespace util
 	}
 
 	template <typename KeyType, typename ValueType>
+	int Map<KeyType, ValueType>::findIndex(const KeyType &key)
+	{
+		int result = -1;
+
+		for (int i = 0; i < keys.size(); i++)
+		{
+			if (keys[i] == key)
+			{
+				result = i;
+			}
+		}
+		return result;
+	}
+
+	template <typename KeyType, typename ValueType>
 	ValueType* Map<KeyType, ValueType>::set(const KeyType &key, const ValueType &value)
 	{
 		ValueType* result = find(key);
@@ -112,15 +141,24 @@ namespace util
 	}
 
 	template<typename KeyType, typename ValueType>
-	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::getIterator(KeyType start) const
+	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::getIterator(const KeyType start) 
 	{
-		if (find(start) == NULL)
+		int indexTemp = findIndex(start);
+		if (indexTemp == -1)
 		{
 			throw std::range_error("Key not found in map.");
 		}
-		Iterator i(*this);
-		i.index = start;
+		Iterator i(*this, indexTemp);
 		return i;
+	}
+
+	template<typename KeyType, typename ValueType>
+	void Map<KeyType, ValueType>::visit(IVisitor visitor)
+	{
+		for (int i = 0; i < keys.size(); i++)
+		{
+			visitor.visit(keys[i], values[i]);
+		}
 	}
 
 	/*==========================================================================
@@ -178,8 +216,8 @@ namespace util
 	*/
 
 	template <typename KeyType, typename ValueType>
-	Map<KeyType, ValueType>::Iterator::Iterator(Map& map)
-		: map(map)
+	Map<KeyType, ValueType>::Iterator::Iterator(Map& map, int index)
+		: map(map), index(index)
 	{}
 
 	template <typename KeyType, typename ValueType>
@@ -187,35 +225,50 @@ namespace util
 	{}
 
 	template<typename KeyType, typename ValueType>
-	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::Iterator::operator++(int junk)
+	void Map<KeyType, ValueType>::Iterator::operator++(int junk)
 	{
-		return Iterator();
+		index++;
+		if (index == map.keys.size())
+		{
+			index = 0;
+		}
 	}
 
 	template<typename KeyType, typename ValueType>
-	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::Iterator::operator++()
+	void Map<KeyType, ValueType>::Iterator::operator++()
 	{
-		return Iterator();
+		++index;
+		if (index == map.keys.size())
+		{
+			index = 0;
+		}
 	}
 
 	template<typename KeyType, typename ValueType>
-	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::Iterator::operator--(int junk)
+	void Map<KeyType, ValueType>::Iterator::operator--(int junk)
 	{
-		return Iterator();
+		index--;
+		if (index == -1)
+		{
+			index = map.keys.size() - 1;
+		}
 	}
 
 	template<typename KeyType, typename ValueType>
-	typename Map<KeyType, ValueType>::Iterator Map<KeyType, ValueType>::Iterator::operator--()
+	void Map<KeyType, ValueType>::Iterator::operator--()
 	{
-		return Iterator();
+		--index;
+		if (index == -1)
+		{
+			index = map.keys.size() - 1;
+		}
 	}
 
 	template<typename KeyType, typename ValueType>
 	ValueType& Map<KeyType, ValueType>::Iterator::operator*()
 	{
-		return &map[index];
+		return map.values[index];
 	}
-
 }
 
 

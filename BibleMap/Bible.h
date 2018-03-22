@@ -5,6 +5,8 @@
 #include "Verse.h"
 #pragma once
 
+using std::ostream;
+
 class Bible : public util::Map<VerseKey, Verse>
 {
 public:
@@ -19,4 +21,6 @@ private:
 	static Bible* bible;
 	bool failed;
 };
+
+ostream& operator<<(ostream& out, const Verse verseI);
 
