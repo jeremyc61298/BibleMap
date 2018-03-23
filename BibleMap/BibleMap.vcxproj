@@ -140,13 +140,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Bible.h" />
+    <ClInclude Include="BibleWordCounter.h" />
     <ClInclude Include="Map.hpp" />
+    <ClInclude Include="ReverseBible.h" />
     <ClInclude Include="Verse.h" />
     <ClInclude Include="VerseKey.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bible.cpp" />
     <ClCompile Include="biblesearcher.cpp" />
+    <ClCompile Include="BibleWordCounter.cpp" />
+    <ClCompile Include="ReverseBible.cpp" />
     <ClCompile Include="Verse.cpp" />
     <ClCompile Include="VerseKey.cpp" />
   </ItemGroup>

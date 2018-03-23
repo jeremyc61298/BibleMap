@@ -24,3 +24,13 @@ void Verse::printVerse() const
 	cout << verseKey.book << " " << verseKey.chapter << ":" << verseKey.verseNumber << " - ";
 	cout << verseText << endl;
 }
+
+string Verse::getVerseText() const
+{
+	return verseText;
+}
+
+void Verse::setVerseText(string newVerse)
+{
+	verseText = newVerse;
+}

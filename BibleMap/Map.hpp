@@ -1,3 +1,4 @@
+
 #include <vector>
 #include <stdexcept>
 
@@ -8,6 +9,8 @@ namespace util
 	{
 
 	public:
+		virtual ~Map();
+
 		// Wrapper is an inner class of the Map Template
 		class Wrapper
 		{
@@ -58,13 +61,13 @@ namespace util
 			IVisitor();
 			virtual ~IVisitor();
 
-			virtual void visit(const KeyType key, const ValueType value) = 0;
+			virtual void visit(KeyType& key, ValueType& value) = 0;
 
 		private:
 
 		};
 
-		void visit(IVisitor visitor);
+		void visit(IVisitor& visitor);
 	private: 
 		std::vector<KeyType> keys;
 		std::vector<ValueType> values;
@@ -79,6 +82,11 @@ namespace util
 	/*==========================================================================
 	* Map class methods
 	*/
+
+	template <typename KeyType, typename ValueType>
+	Map<KeyType, ValueType>::~Map()
+	{
+	}
 
 	template <typename KeyType, typename ValueType>
 	typename Map<KeyType, ValueType>::Wrapper Map<KeyType, ValueType>::operator[](const KeyType& key)
@@ -153,7 +161,7 @@ namespace util
 	}
 
 	template<typename KeyType, typename ValueType>
-	void Map<KeyType, ValueType>::visit(IVisitor visitor)
+	void Map<KeyType, ValueType>::visit(IVisitor& visitor)
 	{
 		for (int i = 0; i < keys.size(); i++)
 		{
@@ -269,7 +277,17 @@ namespace util
 	{
 		return map.values[index];
 	}
+
+	/*==========================================================================
+	* IVisitor class methods
+	*/
+
+	template <typename KeyType, typename ValueType>
+	Map<KeyType, ValueType>::IVisitor::IVisitor()
+	{}
+
+	template <typename KeyType, typename ValueType>
+	Map<KeyType, ValueType>::IVisitor::~IVisitor()
+	{}
+
 }
-
-
-

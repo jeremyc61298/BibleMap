@@ -27,6 +27,12 @@
     <ClInclude Include="Bible.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BibleWordCounter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ReverseBible.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VerseKey.cpp">
@@ -39,6 +45,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="biblesearcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BibleWordCounter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ReverseBible.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

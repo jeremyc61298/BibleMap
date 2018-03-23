@@ -13,6 +13,9 @@ public:
 
 	void printVerse() const;
 
+	string getVerseText() const;
+	void setVerseText(string newVerse);
+
 private:
 
 	VerseKey verseKey;
